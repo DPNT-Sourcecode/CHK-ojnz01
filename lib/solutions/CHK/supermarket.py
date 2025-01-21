@@ -48,59 +48,32 @@ class Calculator:
     def calculate_total_bill(self, product: str, unit: int) -> int:
         total_sum = 0
         product_promotion = Promotion(self.offer_dict, product)
-        product_info = self.offer_dict.get(product)
-        if product_info:
-            product_offer = product_info.get("offer")
-            if product_offer:
-                product_offer = sorted(
-                    product_offer, key=lambda x: x["unit"], reverse=True
-                )
-                update_item_unit = unit
-                final_offer = self.get_product_offer(
-                    unit, product_offer, product_info["price"]
-                )
+        if product_promotion.offer_details_dict:
+            total_sum = self.get_product_offer(unit, production_promotion)
 
+        elif not product_promotion.offer_dict and product_promotion.price:
+            total_sum = product_promotion.price * unit
         else:
-            return -1
+            total_sum = -1
+
+        return total_sum
+
+    def get_product_offer(self, total_unit, promotion):
+        final_offer, remain_unit = promotion.multi_buy(total_unit)
+        self.free_item.update(promotion.free_item)
+
+        if remain_unit and remain_unit >= 1:
+            final_offer += promotion.price * remain_unit
+        elif remain_unit and remain_unit <= 0:
+            final_offer = promotion.price * total_unit
 
         return final_offer
 
-    def get_product_offer(self, unit, product_offer, price_per_unit):
-        offer_unit = None
-        update_item_unit = unit
-        temp_total_count = 0
-        final_offer = 0
-
-        for offer_item in product_offer:
-
-            if "final_price" in offer_item:
-                total_count, remain_offer_unit = self._calculate_single_offer(
-                    offer_item, unit
-                )
-
-                update_item_unit = remain_offer_unit
-                temp_total_count += total_count
-
-            elif "free_item" in offer_item:
-
-                self.free_item[offer_item["free_item"]] = unit // offer_item["unit"]
-
-        if update_item_unit and update_item_unit >= 1:
-            final_offer += price_per_unit * update_item_unit
-        elif update_item_unit and update_item_unit <= 0:
-            final_offer = price_per_unit * unit
-
-        return final_offer
-
-    def _calculate_single_offer(self, offer, number_unit):
-        offer_cal = 0
-
-        item_offer, remainder_unit = divmod(number_unit, offer["unit"])
-        final_offer = offer["final_price"] * item_offer
-
-        return final_offer, remainder_unit
+    def calculate_total_with_offer(self, prod_total_dict):
+        total = 0
 
     def getfree_items(self):
         return self.free_item
+
 
 
