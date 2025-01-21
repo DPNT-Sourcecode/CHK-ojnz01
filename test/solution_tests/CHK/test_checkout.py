@@ -3,7 +3,7 @@ from solutions.CHK.checkout_solution import checkout
 from solutions.CHK.supermarket import Calculator
 
 
-Discount_offer_dict = {
+OFFER_DISCOUNT_CHK_R2 = {
     "A": {"price": 50, "offer": {"unit": 3, "final_price": 130}},
     "B": {"price": 30, "offer": {"unit": 2, "final_price": 45}},
     "C": {"price": 20},
@@ -37,10 +37,8 @@ def test_checkout(skus, result):
     "item, total_unit, result_total", [("A", 3, 130), ("B", 3, 75), ("C", 4, 80)]
 )
 def test_calculator(item, total_unit, result_total):
-    test_calculator_obj = Calculator(Discount_offer_dict)
+    test_calculator_obj = Calculator(OFFER_DISCOUNT_CHK_R2)
 
     offer_result = test_calculator_obj.calculate_final_offer(item, total_unit)
 
     assert offer_result == result_total
-
-
