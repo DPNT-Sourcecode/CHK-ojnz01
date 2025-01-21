@@ -15,7 +15,7 @@ offer_dict_r2 = {
 def checkout_chk_r2(skus: str):
     final_price_item = 0
     calculator = Calculator(offer_dict_r2)
-
+    prod_item_dict = {}
     if skus:
         try:
             if not isinstance(skus, str):
@@ -32,7 +32,11 @@ def checkout_chk_r2(skus: str):
 
                 final_price_item += calculator.calculate_final_offer(x, total_item)
 
+            # Check if there's any free item 
+            free_item_dict = calculator.getfree_items()
+            for items, values in prod
         except ValueError as exec:
             final_price_item = -1
 
     return final_price_item
+
