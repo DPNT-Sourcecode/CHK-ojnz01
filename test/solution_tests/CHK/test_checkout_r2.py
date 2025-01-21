@@ -2,11 +2,16 @@ import pytest
 
 
 OFFER_DISCOUNT_CHK_R1 = {
-    "A": {"price": 50, "offer": {"unit": 3, "final_price": 130}},
-    "B": {"price": 30, "offer": {"unit": 2, "final_price": 45}},
+    "A": {"price": 50, "offer": [
+        {"unit": 3, "final_price": 130},
+        {"unit": 5, "final_price": 200}
+        ]},
+    "B": {"price": 30, "offer": [
+        {"unit": 2, "final_price": 45}
+        ]},
     "C": {"price": 20},
     "D": {"price": 15},
-    "E": {"price": 40, "offer": {"unit": }}
+    "E": {"price": 40, "offer": {"unit": 2, "free_item": "B"}}
 }
 
 
@@ -22,4 +27,5 @@ OFFER_DISCOUNT_CHK_R1 = {
     ("AA", 100),
     ("AxA", -1),
     ({"test"}, -1),
+    ("AABEE", 140)
 ]) 
