@@ -23,9 +23,7 @@ class Calculator:
                     product_offer, key=lambda x: x["unit"], reverse=True
                 )
                 update_item_unit = unit
-                temp_total_count, update_item_unit = self.get_product_offer(
-                    unit, product_offer, temp_total_count
-                )
+                temp_total_count = self.get_product_offer(unit, product_offer)
 
                 final_offer = temp_total_count
 
@@ -69,6 +67,7 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
 
 
 
