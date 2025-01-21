@@ -8,4 +8,8 @@ class TestHello:
     def test_hello(self, input):
         assert hello_solution.hello(input) == "Hello, World!"
 
+    def test_empty_hello(self):
+        assert hello_solution.hello(None) == None
+
+
 
