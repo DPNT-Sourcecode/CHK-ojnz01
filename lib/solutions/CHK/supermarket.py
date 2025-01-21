@@ -55,6 +55,8 @@ class Calculator:
                 temp_total_count += total_count
 
             elif "free_item" in offer_item:
+                print(f"--> P{offer_item['free_item']}")
+
                 self.free_item[offer_item["free_item"]] = unit // offer_item["unit"]
 
         return update_item_unit, temp_total_count
@@ -69,4 +71,5 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
 
