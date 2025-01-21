@@ -1,5 +1,6 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
+from curses.ascii import islower
 from solutions.CHK.supermarket import Calculator
 
 supermaker_offer_dict = {
@@ -19,6 +20,9 @@ def checkout(skus: str):
         try:
             item_list = skus.replace(",", "").strip()
             for x in set(item_list):
+                if x.islower():
+                    final_price_item = -1
+                    break
                 total_item = item_list.count(x)
 
                 final_price_item += calculator.calculate_final_offer(x, total_item)
@@ -28,5 +32,6 @@ def checkout(skus: str):
             final_price_item = 0
 
     return -1 if final_price_item == 0 else final_price_item
+
 
 
