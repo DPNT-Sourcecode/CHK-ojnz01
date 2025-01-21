@@ -45,14 +45,9 @@ class Calculator:
         self.offer_dict = offer_dict
         self.free_item = {}
 
-    def calculate_final_offer(self, product: str, unit: int) -> int:
-        final_offer = 0
-        price_per_unit = 0
-        offer_unit = None
-        offer_price = None
-        offer_free_item = None
-        update_item_unit = -1
-
+    def calculate_total_bill(self, product: str, unit: int) -> int:
+        total_sum = 0
+        product_promotion = Promotion(self.offer_dict, product)
         product_info = self.offer_dict.get(product)
         if product_info:
             product_offer = product_info.get("offer")
@@ -107,4 +102,5 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
 
