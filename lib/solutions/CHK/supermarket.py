@@ -48,6 +48,3 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
-
-
-

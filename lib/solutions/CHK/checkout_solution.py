@@ -4,8 +4,8 @@ from curses.ascii import islower
 from solutions.CHK.supermarket import Calculator
 
 supermaker_offer_dict = {
-    "A": {"price": 50, "offer": {"unit": 3, "final_price": 130}},
-    "B": {"price": 30, "offer": {"unit": 2, "final_price": 45}},
+    "A": {"price": 50, "offer": [{"unit": 3, "final_price": 130}]},
+    "B": {"price": 30, "offer": [{"unit": 2, "final_price": 45}]},
     "C": {"price": 20},
     "D": {"price": 15},
 }
