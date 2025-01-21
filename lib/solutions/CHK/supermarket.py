@@ -25,10 +25,13 @@ class Calculator:
             item_offer, remain_unit = divmod(unit, offer_unit)
             final_offer = offer_price * item_offer
 
-        if remain_unit > 0:
-            final_offer = final_offer + (price_per_unit * remain_unit)
+            if remain_unit > 1:
+                final_offer = final_offer + (price_per_unit * remain_unit)
+        else:
+            final_offer = price_per_unit * unit
 
         return final_offer
+
 
 
 
