@@ -34,8 +34,9 @@ class Calculator:
                         update_item_unit = remain_offer_unit
                         temp_total_count += total_count
 
-                    elif "free_item" in offer_item:
-                        offer_free_item = offer_item.get("free_item", None)
+                if "free_item" in product_offer:
+                    offer_free_item = product_offer.get("free_item", None)
+
                 final_offer = temp_total_count
 
             price_per_unit = product_info["price"]
@@ -62,6 +63,7 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
 
 
 
