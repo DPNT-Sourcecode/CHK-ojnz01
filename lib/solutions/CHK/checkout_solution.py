@@ -23,7 +23,3 @@ def checkout(skus: str):
             final_price_item += calculator.calculate_final_offer(x, total_item)
 
     return final_price_item
-
-
-
-
