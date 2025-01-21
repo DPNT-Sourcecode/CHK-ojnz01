@@ -12,7 +12,7 @@ offer_dict_r2 = {
 }
 
 
-def checkout_chk_r2(skus: str):
+def checkout(skus: str):
     final_price_item = 0
     calculator = Calculator(offer_dict_r2)
     prod_item_dict = {}
@@ -46,6 +46,7 @@ def checkout_chk_r2(skus: str):
             final_price_item = -1
 
     return final_price_item
+
 
 
 

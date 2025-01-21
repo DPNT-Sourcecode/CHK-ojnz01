@@ -1,5 +1,5 @@
 import pytest
-from solutions.CHK.checkout_r2_soloution import checkout_chk_r2
+from solutions.CHK.checkout_r2_soloution import checkout
 
 
 OFFER_DISCOUNT_CHK_R1 = {
@@ -32,6 +32,7 @@ OFFER_DISCOUNT_CHK_R1 = {
     ],
 )
 def test_checkout_r2(skus, result):
-    checkout_test = checkout_chk_r2(skus)
+    checkout_test = checkout(skus)
     assert checkout_test == result
+
 
