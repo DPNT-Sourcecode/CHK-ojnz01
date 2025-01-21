@@ -18,9 +18,14 @@ def checkout(skus: str):
 
     if skus:
         try:
-            item_list = skus.replace(",", "").strip()
+            if not isinstance(skus, str):
+                final_price_item = -1
+                raise ValueError("Invalid type")
+
+            item_list = skus.replace(",", "")
+            item_list = item_list.replace(" ", "")
             for x in set(item_list):
-                if x.islower():
+                if x.islower() or not x.isalpha():
                     final_price_item = -1
                     break
                 total_item = item_list.count(x)
@@ -28,8 +33,8 @@ def checkout(skus: str):
                 final_price_item += calculator.calculate_final_offer(x, total_item)
 
         except ValueError as exec:
-            print("error")
             final_price_item = -1
 
     return final_price_item
+
 
