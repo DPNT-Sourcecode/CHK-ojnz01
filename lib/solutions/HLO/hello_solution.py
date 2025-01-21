@@ -5,6 +5,8 @@ from solutions.HLO import hello_solution
 
 def hello(friend_name):
     if friend_name:
-        return "Hello, World!"
+        return f"Hello, {friend_name}!"
+
     else:
         return None
+
