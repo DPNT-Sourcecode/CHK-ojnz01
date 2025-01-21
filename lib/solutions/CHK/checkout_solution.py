@@ -13,11 +13,16 @@ supermaker_offer_dict = {
 def checkout(skus: str):
 
     final_price = -1
+    final_price_item = 0
 
     if skus:
-        item_list = skus.split(",")
+        item_list = skus.split(",").
         for x in set(item_list):
-            total_item = 
-        calculator = Calculator(supermaker_offer_dict)
+            total_item = item_list.count(x)
+            calculator = Calculator(supermaker_offer_dict)
+            final_price_item += calculator.calculate_final_offer(x, total_item)
+
+    return final_price_item
+
 
 
