@@ -40,6 +40,3 @@ class Calculator:
             final_offer = price_per_unit * unit
 
         return final_offer
-
-
-
