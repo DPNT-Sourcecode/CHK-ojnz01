@@ -23,9 +23,8 @@ class Calculator:
                     product_offer, key=lambda x: x["unit"], reverse=True
                 )
                 update_item_unit = unit
-                temp_total_count = 0
-                offer_unit, offer_free_item, update_item_unit = self.get_product_offer(
-                    update_item_unit, product_offer, temp_total_count
+                temp_total_count, update_item_unit = self.get_product_offer(
+                    unit, product_offer, temp_total_count
                 )
 
                 final_offer = temp_total_count
@@ -39,25 +38,26 @@ class Calculator:
         elif update_item_unit and update_item_unit <= 0:
             final_offer = price_per_unit * unit
 
-        if offer_unit and offer_free_item:
-            self.free_item[offer_free_item] = unit // offer_unit
-
         return final_offer
 
-    def get_product_offer(self, update_item_unit, product_offer, temp_total_count):
+    def get_product_offer(self, unit, product_offer):
+        offer_unit = None
+        update_item_unit = unit
+        temp_total_count = 0
+
         for offer_item in product_offer:
             if "final_price" in offer_item:
                 total_count, remain_offer_unit = self._calculate_single_offer(
-                    offer_item, update_item_unit
+                    offer_item, unit
                 )
 
                 update_item_unit = remain_offer_unit
                 temp_total_count += total_count
 
             elif "free_item" in offer_item:
-                offer_free_item = offer_item.get("free_item", None)
-                offer_unit = offer_item["unit"]
-        return offer_unit, offer_free_item, update_item_unit
+                self.free_item["free_item"] = unit // offer_item["unit"]
+
+        return update_item_unit
 
     def _calculate_single_offer(self, offer, number_unit):
         offer_cal = 0
@@ -69,6 +69,7 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
 
 
 
