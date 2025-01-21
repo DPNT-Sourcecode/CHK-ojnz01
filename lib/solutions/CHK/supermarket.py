@@ -49,9 +49,9 @@ class Calculator:
         total_sum = 0
         product_promotion = Promotion(self.offer_dict, product)
         if product_promotion.offer_details_dict:
-            total_sum = self.get_product_offer(unit, production_promotion)
+            total_sum = self.get_product_offer(unit, product_promotion)
 
-        elif not product_promotion.offer_dict and product_promotion.price:
+        elif not product_promotion.offer_details_dict and product_promotion.price:
             total_sum = product_promotion.price * unit
         else:
             total_sum = -1
@@ -71,9 +71,15 @@ class Calculator:
 
     def calculate_total_with_offer(self, prod_total_dict):
         total = 0
+        for item, values in prod_total_dict.items():
+            promotion_dict = Promotion(self.offer_dict, item)
+            if item in self.free_item:
+                promoted_price = self.get_product_offer(
+                    self.free_item[item], promotion_dict
+                )
 
-    def getfree_items(self):
-        return self.free_item
+                values -= promoted_price
 
+            total += values
 
-
+        return total

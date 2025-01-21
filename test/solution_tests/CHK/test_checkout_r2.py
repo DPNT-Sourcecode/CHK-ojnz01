@@ -31,6 +31,7 @@ OFFER_DISCOUNT_CHK_R1 = {
         ("AABEE", 180),
         ("AAAAAAAAA", 380),
         ("EEEEBB", 160),
+        ("EEEEBBB", 190),
         ("AAAAAAAA", 330),
     ],
 )

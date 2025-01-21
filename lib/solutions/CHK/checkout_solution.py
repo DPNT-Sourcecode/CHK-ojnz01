@@ -31,24 +31,9 @@ def checkout(skus: str):
 
                 total_item = item_list.count(x)
 
-                prod_item_dict[x] = calculator.calculate_final_offer(x, total_item)
+                prod_item_dict[x] = calculator.calculate_total_bill(x, total_item)
 
-            # Check if there's any free item
-            free_item_dict = calculator.getfree_items()
-            for item, values in prod_item_dict.items():
-                product_dict_offer = calculator.offer_dict.get(item, None)
-                if item in free_item_dict:
-                    free_item_unit = free_item_dict[item]
-                    promoted_price = calculator.get_product_offer(
-                        free_item_unit,
-                        product_dict_offer.get("offer"),
-                        product_dict_offer.get("price"),
-                    )
-
-                    values -= promoted_price
-                    # values -= offer_dict_r2[item]["price"] * free_item_dict[item]
-
-                final_price_item += values
+            final_price_item = calculator.calculate_total_with_offer(prod_item_dict)
 
         except ValueError as exec:
             final_price_item = -1
