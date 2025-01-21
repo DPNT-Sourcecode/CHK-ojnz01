@@ -21,7 +21,11 @@ class Calculator:
                 offer_price = product_info["offer"]["final_price"]
             price_per_unit = product_info["price"]
 
+        if offer_unit and offer_price:
+            item_offer = unit // offer_unit
+
         return final_result
+
 
 
 
