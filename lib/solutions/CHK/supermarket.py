@@ -8,17 +8,16 @@ class Calculator:
 
     def calculate_final_offer(self, product: str, unit: int) -> int:
         final_offer = 0
-        offer_info = {}
+        price_per_unit = 0
         offer_unit = None
         offer_price = None
-        price_per_unit = 0
-        remain_unit = 0
-        product_info = self.offer_dict.get(product)
 
+        product_info = self.offer_dict.get(product)
         if product_info:
-            if "offer" in product_info:
-                offer_unit = product_info["offer"]["unit"]
-                offer_price = product_info["offer"]["final_price"]
+            product_offer = product_info.get("offer")
+            if product_offer:
+                offer_unit = product_offer["unit"]
+                offer_price = product_offer["final_price"]
             price_per_unit = product_info["price"]
 
         if offer_unit and offer_price:
@@ -26,9 +25,8 @@ class Calculator:
             final_offer = offer_price * item_offer
 
             if remain_unit >= 1:
-                final_offer = final_offer + (price_per_unit * remain_unit)
+                final_offer += price_per_unit * remain_unit
         else:
             final_offer = price_per_unit * unit
 
         return final_offer
-

@@ -11,7 +11,16 @@ Discount_offer_dict = {
 }
 
 
-@pytest.mark.parametrize("skus, result", [("A, A, A, B, C", 190)])
+@pytest.mark.parametrize(
+    "skus, result",
+    [
+        ("A, A, A, B, C", 180),
+        ("", -1),
+        ("test", -1),
+        ("A, A, A, B, B, B, C, D", 240),
+        ("A, B, C, D", 115),
+    ],
+)
 def test_checkout(skus, result):
     checkout_test = checkout(skus)
 

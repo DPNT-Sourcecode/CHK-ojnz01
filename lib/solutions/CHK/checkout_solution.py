@@ -12,14 +12,19 @@ supermaker_offer_dict = {
 
 def checkout(skus: str):
 
-    final_price = -1
     final_price_item = 0
+    calculator = Calculator(supermaker_offer_dict)
 
     if skus:
-        item_list = skus.replace(" ", "").split(",")
-        for x in set(item_list):
-            total_item = item_list.count(x)
-            calculator = Calculator(supermaker_offer_dict)
-            final_price_item += calculator.calculate_final_offer(x, total_item)
+        try:
+            item_list = skus.replace(" ", "").split(",")
+            for x in set(item_list):
+                total_item = item_list.count(x)
 
-    return final_price_item
+                final_price_item += calculator.calculate_final_offer(x, total_item)
+
+        except ValueError as exec:
+            print("error")
+            final_price_item = 0
+
+    return -1 if final_price_item == 0 else final_price_item
