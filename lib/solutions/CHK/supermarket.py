@@ -20,8 +20,9 @@ class Calculator:
                 for offer_item in product_offer:
                     offer_unit = product_offer["unit"]
 
-                    offer_price = product_offer.get("final_price")
-                    free_item = product_offer.get("")
+                    offer_price = product_offer.get("final_price", None)
+                    free_item = product_offer.get("free_item", None)
+
             price_per_unit = product_info["price"]
         else:
             return -1
@@ -32,8 +33,12 @@ class Calculator:
 
             if remain_unit >= 1:
                 final_offer += price_per_unit * remain_unit
+        elif offer_unit and free_item:
+            item_offer, remain_unit = divmod(unit, offer_unit)
+
         else:
             final_offer = price_per_unit * unit
 
         return final_offer
+
 
