@@ -32,18 +32,21 @@ def checkout_chk_r2(skus: str):
 
                 prod_item_dict[x] = calculator.calculate_final_offer(x, total_item)
 
-            # Check if there's any free item
+            # Check if there's free item
             free_item_dict = calculator.getfree_items()
-            for item, values in prod_item_dict:
+            for item, values in prod_item_dict.items():
                 if item in free_item_dict:
                     free_item_unit = free_item_dict[item]
-                    values -= offer_dict_r2[item]["price"] * free_item_dict[item]
-
+                    total_price_free_item = (
+                        offer_dict_r2[item]["price"] * free_item_unit
+                    )
+                    values -= total_price_free_item
                 final_price_item += values
 
         except ValueError as exec:
             final_price_item = -1
 
     return final_price_item
+
 
 
