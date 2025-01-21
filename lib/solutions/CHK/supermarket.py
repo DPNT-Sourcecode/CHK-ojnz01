@@ -35,7 +35,7 @@ class Calculator:
         update_item_unit = unit
         temp_total_count = 0
         final_offer = 0
-        price_pre_unit = product_offer["price"]
+        price_per_unit = product_offer["price"]
 
         for offer_item in product_offer:
 
@@ -69,6 +69,3 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
-
-
-
