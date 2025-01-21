@@ -6,5 +6,6 @@ class TestHello:
 
     @pytest.mark.parametrize("input", [("testing"), ("none_works")])
     def test_hello(self, input):
-        assert hello_solution.hello(input) == "hello to the world"
+        assert hello_solution.hello(input) == "Hello, World!"
+
 

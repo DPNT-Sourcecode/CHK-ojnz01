@@ -4,7 +4,11 @@ from solutions.HLO import hello_solution
 
 
 def hello(friend_name):
-    return "hello to the world"
+    if friend_name:
+        return "Hello, World!"
+    else:
+        return None
+
 
 
 
