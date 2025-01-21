@@ -47,9 +47,10 @@ class Calculator:
         if update_item_unit and update_item_unit >= 1:
             final_offer += price_per_unit * update_item_unit
         elif update_item_unit and update_item_unit <= 0:
-            if offer_unit and offer_free_item:
-                self.free_item[offer_free_item] = unit // offer_unit
             final_offer = price_per_unit * unit
+
+        if offer_unit and offer_free_item:
+            self.free_item[offer_free_item] = unit // offer_unit
 
         return final_offer
 
@@ -63,4 +64,5 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
 
