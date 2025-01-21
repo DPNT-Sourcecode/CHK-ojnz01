@@ -8,7 +8,3 @@ def hello(friend_name):
         return "Hello, World!"
     else:
         return None
-
-
-
-
