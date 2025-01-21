@@ -27,7 +27,8 @@ def checkout_chk_r2(skus: str):
             for x in set(item_list):
                 if x.islower() or not x.isalpha():
                     final_price_item = -1
-                    break
+                    raise ValueError("Invalid Input")
+
                 total_item = item_list.count(x)
 
                 prod_item_dict[x] = calculator.calculate_final_offer(x, total_item)
@@ -45,6 +46,7 @@ def checkout_chk_r2(skus: str):
             final_price_item = -1
 
     return final_price_item
+
 
 
 
