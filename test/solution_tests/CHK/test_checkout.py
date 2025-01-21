@@ -4,8 +4,8 @@ from solutions.CHK.supermarket import Calculator
 
 
 OFFER_DISCOUNT_CHK_R1 = {
-    "A": {"price": 50, "offer": {"unit": 3, "final_price": 130}},
-    "B": {"price": 30, "offer": {"unit": 2, "final_price": 45}},
+    "A": {"price": 50, "offer": [{"unit": 3, "final_price": 130}]},
+    "B": {"price": 30, "offer": [{"unit": 2, "final_price": 45}]},
     "C": {"price": 20},
     "D": {"price": 15},
 }
@@ -42,3 +42,4 @@ def test_calculator(item, total_unit, result_total):
     offer_result = test_calculator_obj.calculate_final_offer(item, total_unit)
 
     assert offer_result == result_total
+
