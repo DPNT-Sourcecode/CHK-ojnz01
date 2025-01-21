@@ -15,6 +15,7 @@ class Calculator:
         item_offer = 0
         final_offer = 0
         remain_price = 0
+        remain_unit = 0
         product_info = self.offer_dict.get(product)
 
         if product_info:
@@ -26,10 +27,11 @@ class Calculator:
 
         if offer_unit and offer_price:
             item_offer = unit // offer_unit
+            remain_unit = unit % item_offer
             final_offer = offer_price * item_offer
 
-        if item_offer < unit:
-            remain_unit = unit - item_offer
+        if remain_unit > 1:
             remain_price = price_per_unit * remain_unit
 
         return final_offer + remain_price
+
