@@ -15,6 +15,9 @@ def checkout(skus: str):
     final_price = -1
 
     if skus:
-
+        item_list = skus.split(",")
+        for x in set(item_list):
+            total_item = 
         calculator = Calculator(supermaker_offer_dict)
+
 
