@@ -18,7 +18,7 @@ class Calculator:
         if product_info:
             product_offer = product_info.get("offer")
             if product_offer:
-                sorted(product_offer, key=lambda x: x["unit"])
+                sorted(product_offer, key=lambda x: x["unit"], reverse=True)
                 for offer_item in product_offer:
                     offer_unit_temp = offer_item["unit"]
                     remainder = divmod(offer_unit_temp, offer_unit)
@@ -53,4 +53,5 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
 
