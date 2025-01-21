@@ -28,7 +28,7 @@ class Calculator:
 
                     if "final_price" in offer_item:
                         total_count, new_item_count = self._calculate_single_offer(
-                            offer_free_item, update_item_unit
+                            offer_item, update_item_unit
                         )
 
                         update_item_unit -= new_item_count
@@ -52,9 +52,7 @@ class Calculator:
             return -1
 
         if update_item_unit:
-            remain_unit = unit - update_item_unit
-            if remain_unit >= 1:
-                final_offer += price_per_unit * remain_unit
+            final_offer += price_per_unit * update_item_unit
 
         elif offer_unit and offer_free_item:
             self.free_item[offer_free_item] = unit // offer_unit
@@ -67,11 +65,12 @@ class Calculator:
     def _calculate_single_offer(self, offer, number_unit):
         offer_cal = 0
 
-        item_offer, remainder_unit = divmod(offer["unit"], number_unit)
+        item_offer, remainder_unit = divmod(number_unit, offer["unit"])
         final_offer = offer["final_price"] * item_offer
 
         return final_offer, remainder_unit
 
     def getfree_items(self):
         return self.free_item
+
 
