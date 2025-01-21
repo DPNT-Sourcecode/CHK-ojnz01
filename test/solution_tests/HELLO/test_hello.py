@@ -10,4 +10,3 @@ class TestHello:
 
     def test_empty_hello(self):
         assert hello_solution.hello(None) == None
-

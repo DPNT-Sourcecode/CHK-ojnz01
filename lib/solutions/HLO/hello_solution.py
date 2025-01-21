@@ -9,4 +9,3 @@ def hello(friend_name):
 
     else:
         return None
-
