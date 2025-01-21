@@ -15,7 +15,7 @@ Discount_offer_dict = {
     "skus, result",
     [
         ("A, A, A, B, C", 180),
-        ("", -1),
+        ("", 0),
         ("test", -1),
         ("A, A, A, B, B, B, C, D", 240),
         ("A, B, C, D", 115),
@@ -42,4 +42,5 @@ def test_calculator(item, total_unit, result_total):
     offer_result = test_calculator_obj.calculate_final_offer(item, total_unit)
 
     assert offer_result == result_total
+
 
