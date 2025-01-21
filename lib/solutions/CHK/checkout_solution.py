@@ -20,18 +20,20 @@ def checkout(skus: str):
         try:
             item_list = skus.replace(",", "").strip()
             for x in set(item_list):
-                if x.islower():
-                    final_price_item = -1
-                    break
                 total_item = item_list.count(x)
 
-                final_price_item += calculator.calculate_final_offer(x, total_item)
+                temp_final = calculator.calculate_final_offer(x, total_item)
+                if temp_final == -1:
+                    return temp_final
+                else:
+                    final_price_item += temp_final
 
         except ValueError as exec:
             print("error")
-            final_price_item = 0
+            final_price_item = -1
 
-    return -1 if final_price_item == 0 else final_price_item
+    return final_price_item
+
 
 
 

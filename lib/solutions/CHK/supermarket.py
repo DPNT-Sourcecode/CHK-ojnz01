@@ -19,6 +19,8 @@ class Calculator:
                 offer_unit = product_offer["unit"]
                 offer_price = product_offer["final_price"]
             price_per_unit = product_info["price"]
+        else:
+            return -1
 
         if offer_unit and offer_price:
             item_offer, remain_unit = divmod(unit, offer_unit)
@@ -30,3 +32,4 @@ class Calculator:
             final_offer = price_per_unit * unit
 
         return final_offer
+
