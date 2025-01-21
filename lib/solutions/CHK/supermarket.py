@@ -14,11 +14,13 @@ class Calculator:
         price_per_unit = 0
 
         for product in self.offer_dict:
+            print(f"product:{product}")
             if "offer" in product:
                 offer_unit = product["offer"]["unit"]
                 offer_price = product["offer"]["final_price"]
             price_per_unit = product["price"]
 
         return final_result
+
 
 
