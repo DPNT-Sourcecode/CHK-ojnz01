@@ -16,7 +16,6 @@ class Calculator:
         product_info = self.offer_dict.get(product)
 
         if product_info:
-
             if "offer" in product_info:
                 offer_unit = product_info["offer"]["unit"]
                 offer_price = product_info["offer"]["final_price"]
@@ -30,5 +29,6 @@ class Calculator:
             final_offer = final_offer + (price_per_unit * remain_unit)
 
         return final_offer
+
 
 

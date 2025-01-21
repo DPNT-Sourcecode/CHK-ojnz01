@@ -18,9 +18,13 @@ def test_checkout(skus, result):
     assert checkout_test == result
 
 
-def test_calculator():
+@pytest.mark.parametrize(
+    "item, total_unit, result_total", [("A", 3, 130), ("B", 3, 75), ("C", 4, 80)]
+)
+def test_calculator(item, total_unit, result_total):
     test_calculator_obj = Calculator(Discount_offer_dict)
 
-    offer_result = test_calculator_obj.calculate_final_offer("A", 3)
+    offer_result = test_calculator_obj.calculate_final_offer(item, total_unit)
 
-    assert offer_result == 130
+    assert offer_result == result_total
+
