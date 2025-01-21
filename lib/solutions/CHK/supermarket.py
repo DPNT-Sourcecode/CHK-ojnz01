@@ -53,8 +53,13 @@ class Calculator:
 
         return final_offer
 
+    def _calculate_single_offer(self, offer, number_unit):
+        offer_cal = 0
+
+        item_offer, remainder_unit = divmod(offer("unit"), number_unit)
+        final_offer = offer("final_price") * item_offer
+
+        return offer_cal
+
     def getfree_items(self):
         return self.free_item
-
-
-
