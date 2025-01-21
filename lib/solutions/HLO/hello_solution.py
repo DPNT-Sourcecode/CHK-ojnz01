@@ -1,6 +1,10 @@
 # noinspection PyUnusedLocal
 # friend_name = unicode string
-def hello(friend_name):
+from solutions.HLO import hello_solution
 
+
+def hello(friend_name):
+    assert hello_solution.
     raise NotImplementedError()
+
 
