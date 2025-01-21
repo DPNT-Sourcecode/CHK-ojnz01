@@ -39,8 +39,9 @@ def checkout(skus: str):
                 product_dict_offer = calculator.offer_dict.get(item, None)
                 if item in free_item_dict:
                     free_item_unit = free_item_dict[item]
-                    updated_item_unit, promoted_price = calculator.get_product_offer(
-                        free_item_unit, product_dict_offer.get("offer")
+                    promoted_price = calculator.get_product_offer(
+                        free_item_unit,
+                        product_dict_offer.get("offer"),
                     )
 
                     values -= promoted_price
@@ -52,4 +53,5 @@ def checkout(skus: str):
             final_price_item = -1
 
     return final_price_item
+
 
