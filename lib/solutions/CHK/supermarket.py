@@ -34,11 +34,12 @@ class Calculator:
             if remain_unit >= 1:
                 final_offer += price_per_unit * remain_unit
         elif offer_unit and free_item:
-            item_offer, remain_unit = divmod(unit, offer_unit)
-
+            free_item_unit = unit // offer_unit
+            final_offer = price_per_unit * unit
         else:
             final_offer = price_per_unit * unit
 
         return final_offer
+
 
 
