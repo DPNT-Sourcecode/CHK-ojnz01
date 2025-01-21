@@ -22,6 +22,7 @@ Discount_offer_dict = {
         ("-", -1),
         ("BABDDCAC", 195),
         ("B", 30),
+        ("AA", 100),
     ],
 )
 def test_checkout(skus, result):
@@ -39,5 +40,6 @@ def test_calculator(item, total_unit, result_total):
     offer_result = test_calculator_obj.calculate_final_offer(item, total_unit)
 
     assert offer_result == result_total
+
 
 
