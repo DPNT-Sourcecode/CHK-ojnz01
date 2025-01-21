@@ -8,7 +8,7 @@ offer_dict_r2 = {
     "B": {"price": 30, "offer": [{"unit": 2, "final_price": 45}]},
     "C": {"price": 20},
     "D": {"price": 15},
-    "E": {"price": 40, "offer": {"unit": 2, "free_item": "B"}},
+    "E": {"price": 40, "offer": [{"unit": 2, "free_item": "B"}]},
 }
 
 
@@ -30,13 +30,20 @@ def checkout_chk_r2(skus: str):
                     break
                 total_item = item_list.count(x)
 
-                final_price_item += calculator.calculate_final_offer(x, total_item)
+                prod_item_dict[x] = calculator.calculate_final_offer(x, total_item)
 
-            # Check if there's any free item 
+            # Check if there's any free item
             free_item_dict = calculator.getfree_items()
-            for items, values in prod
+            for item, values in prod_item_dict:
+                if item in free_item_dict:
+                    free_item_unit = free_item_dict[item]
+                    values -= offer_dict_r2[item]["price"] * free_item_dict[item]
+
+                final_price_item += values
+
         except ValueError as exec:
             final_price_item = -1
 
     return final_price_item
+
 

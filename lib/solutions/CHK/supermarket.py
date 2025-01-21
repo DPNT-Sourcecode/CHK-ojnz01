@@ -17,16 +17,16 @@ class Calculator:
         product_info = self.offer_dict.get(product)
         if product_info:
             product_offer = product_info.get("offer")
-            if product_offer:
-                for offer_item in product_offer:
-                    offer_unit_temp = product_offer["unit"]
+        
+            for offer_item in product_offer:
+                offer_unit_temp = offer_item["unit"]
 
-                    if offer_unit and (unit >= offer_unit) and unit < offer_unit_temp:
-                        break
-                    else:
-                        offer_unit = offer_unit_temp
-                        offer_price = product_offer.get("final_price", None)
-                        offer_free_item = product_offer.get("free_item", None)
+                if offer_unit and (unit >= offer_unit) and unit < offer_unit_temp:
+                    break
+                else:
+                    offer_unit = offer_unit_temp
+                    offer_price = offer_item.get("final_price", None)
+                    offer_free_item = offer_item.get("free_item", None)
 
             price_per_unit = product_info["price"]
         else:
@@ -48,4 +48,5 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
 
