@@ -18,10 +18,15 @@ class Calculator:
         if product_info:
             product_offer = product_info.get("offer")
             if product_offer:
+                sorted(product_offer, key=lambda x: x["unit"])
                 for offer_item in product_offer:
                     offer_unit_temp = offer_item["unit"]
-
-                    if offer_unit and (unit >= offer_unit) and unit < offer_unit_temp:
+                    remainder = divmod(offer_unit_temp, offer_unit)
+                    if (
+                        offer_unit
+                        and (remainder >= offer_unit)
+                        and unit < offer_unit_temp
+                    ):
                         break
                     else:
                         offer_unit = offer_unit_temp
@@ -48,3 +53,4 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
