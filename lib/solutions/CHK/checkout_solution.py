@@ -19,6 +19,7 @@ def checkout(skus: str):
     if skus:
         try:
             item_list = skus.replace(",", "").strip()
+            print(item_list, set(item_list))
             for x in set(item_list):
                 total_item = item_list.count(x)
 
@@ -33,7 +34,3 @@ def checkout(skus: str):
             final_price_item = -1
 
     return final_price_item
-
-
-
-
