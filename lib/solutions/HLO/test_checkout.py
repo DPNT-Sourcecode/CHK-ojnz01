@@ -24,4 +24,3 @@ def test_calculator():
     offer_result = test_calculator_obj.calculate_final_offer("A", 3)
 
     assert offer_result == 130
-

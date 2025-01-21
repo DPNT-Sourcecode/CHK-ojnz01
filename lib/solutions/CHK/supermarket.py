@@ -26,16 +26,10 @@ class Calculator:
 
         if offer_unit and offer_price:
             item_offer = unit // offer_unit
-            final_offer = offer_unit * item_offer
+            final_offer = offer_price * item_offer
 
         if item_offer < unit:
             remain_unit = unit - item_offer
             remain_price = price_per_unit * remain_unit
 
         return final_offer + remain_price
-
-
-
-
-
-
