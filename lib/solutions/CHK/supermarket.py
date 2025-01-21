@@ -27,25 +27,16 @@ class Calculator:
                 for offer_item in product_offer:
 
                     if "final_price" in offer_item:
-                        total_count, new_item_count = self._calculate_single_offer(
+                        total_count, remain_offer_unit = self._calculate_single_offer(
                             offer_item, update_item_unit
                         )
 
-                        update_item_unit -= new_item_count
+                        update_item_unit = remain_offer_unit
                         temp_total_count += total_count
 
-                    # remainder = divmod(offer_unit_temp, unit)
-                    # if (
-                    #     offer_unit
-                    #     and (remainder >= offer_unit)
-                    #     and unit < offer_unit_temp
-                    # ):
-                    #     break
-                    # else:
-                    #     offer_unit = offer_unit_temp
-                    # offer_price = offer_item.get("final_price", None)
                     elif "free_item" in offer_item:
                         offer_free_item = offer_item.get("free_item", None)
+                final_offer = temp_total_count
 
             price_per_unit = product_info["price"]
         else:
@@ -72,6 +63,7 @@ class Calculator:
 
     def getfree_items(self):
         return self.free_item
+
 
 
 
