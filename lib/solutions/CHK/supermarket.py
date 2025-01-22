@@ -78,8 +78,9 @@ class Calculator:
                     self.free_item[item], promotion_dict
                 )
 
-                values -= promoted_price
+                values = promoted_price
 
             total += values
 
         return total
+
