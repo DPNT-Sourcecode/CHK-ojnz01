@@ -2,19 +2,6 @@ import pytest
 from solutions.CHK.checkout_solution import checkout
 
 
-OFFER_DISCOUNT_CHK_R1 = {
-    "A": {
-        "price": 50,
-        "offer": [{"unit": 3, "final_price": 130}, {"unit": 5, "final_price": 200}],
-    },
-    "B": {"price": 30, "offer": [{"unit": 2, "final_price": 45}]},
-    "C": {"price": 20},
-    "D": {"price": 15},
-    "E": {"price": 40, "offer": [{"unit": 2, "free_item": "B"}]},
-    "F": {"price": 10, "offer": [{"unit": 2, "free_item": "F"}]},
-}
-
-
 @pytest.mark.parametrize(
     "skus, result",
     [
@@ -37,9 +24,12 @@ OFFER_DISCOUNT_CHK_R1 = {
         ("ABCDEABCDE", 280),
         ("CCADDEEBBA", 280),
         ("FF", 10),
+        ("AABF", 140),
+        ("AABFFF", 150),
     ],
 )
 def test_checkout_r2(skus, result):
     checkout_test = checkout(skus)
     assert checkout_test == result
+
 
