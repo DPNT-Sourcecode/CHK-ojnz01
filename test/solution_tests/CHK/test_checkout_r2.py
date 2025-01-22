@@ -40,4 +40,3 @@ OFFER_DISCOUNT_CHK_R1 = {
 def test_checkout_r2(skus, result):
     checkout_test = checkout(skus)
     assert checkout_test == result
-

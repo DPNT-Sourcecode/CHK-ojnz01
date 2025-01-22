@@ -43,4 +43,3 @@ def checkout(skus: str):
             final_price_item = -1
 
     return final_price_item
-
