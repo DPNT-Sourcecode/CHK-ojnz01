@@ -7,8 +7,9 @@ class Promotion:
         self.price = None
         self.offer_details_dict = None
         self.free_item = {}
+        self.product_name = product_name
 
-        promo_dict = offer_dict.get(product_name, None)
+        promo_dict = offer_dict.get(self.product_name, None)
         if promo_dict:
             self.price = promo_dict.get("price", None)
             temp_offer_dict_obj = promo_dict.get("offer", None)
@@ -49,10 +50,10 @@ class Promotion:
                             self.free_item[item] = paid_items
                         else:
                             full_group = quantity // group_size
-                            remain
-                        self.free_item[offer_item["free_item"]] = (
-                            quantity // offer_item["unit"]
-                        )
+                            remaining = min(quantity % group_size, free_unit)
+                            paid_items = full_group * free_unit + remaining
+
+                            self.free_item[item] = quantity - paid_items
 
         return total_cost, remain_quantity
 
@@ -101,4 +102,5 @@ class Calculator:
             total += current_values
 
         return total
+
 
