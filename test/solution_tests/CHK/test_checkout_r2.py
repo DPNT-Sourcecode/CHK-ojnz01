@@ -32,12 +32,13 @@ from solutions.CHK.checkout_solution import checkout
         ("AAAAAEEBAAABBFFF", 475),
         ("FFABCDECBAABCABBAAAEEAAFF", 695),
         ("PPSVV", 220),
-        ("LLLPPSVV", 20),
-        ("PPSVV", 20),
-        ("PPSVV", 20),
+        ("LLLPPSVV", 270),
+        ("UUUUUUUUU", 280),
+        ("WWZHHHHHH", 95),
     ],
 )
 def test_checkout_r2(skus, result):
     checkout_test = checkout(skus)
     assert checkout_test == result
+
 
