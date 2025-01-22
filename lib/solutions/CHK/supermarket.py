@@ -32,9 +32,17 @@ class Promotion:
                     total_cost += offer_item["final_price"] * item_offer
                     remain_quantity = remainder_unit
                 elif "free_item" in offer_item:
-                    self.free_item[offer_item["free_item"]] = (
-                        quantity // offer_item["unit"]
+
+                    minimum_items = (
+                        offer_item["min_items"] if "min_items" in offer_item else None
                     )
+                    print(f"---> {minimum_items}, {quantity}")
+                    if minimum_items and minimum_items < quantity:
+                        self.free_item = {}
+                    else:
+                        self.free_item[offer_item["free_item"]] = (
+                            quantity // offer_item["unit"]
+                        )
 
         return total_cost, remain_quantity
 
@@ -83,3 +91,4 @@ class Calculator:
             total += current_values
 
         return total
+
