@@ -10,7 +10,8 @@ OFFER_DISCOUNT_CHK_R1 = {
     "B": {"price": 30, "offer": [{"unit": 2, "final_price": 45}]},
     "C": {"price": 20},
     "D": {"price": 15},
-    "E": {"price": 40, "offer": {"unit": 2, "free_item": "B"}},
+    "E": {"price": 40, "offer": [{"unit": 2, "free_item": "B"}]},
+    "F": {"price": 10, "offer": [{"unit": 2, "free_item": "F"}]},
 }
 
 
@@ -35,8 +36,10 @@ OFFER_DISCOUNT_CHK_R1 = {
         ("AAAAAAAA", 330),
         ("ABCDEABCDE", 280),
         ("CCADDEEBBA", 280),
+        ("FF", 10),
     ],
 )
 def test_checkout_r2(skus, result):
     checkout_test = checkout(skus)
     assert checkout_test == result
+
