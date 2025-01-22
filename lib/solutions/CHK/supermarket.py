@@ -73,14 +73,15 @@ class Calculator:
         total = 0
         for item, values in prod_total_dict.items():
             promotion_dict = Promotion(self.offer_dict, item)
+            current_values = values["cost"]
             if item in self.free_item:
-                promoted_price = self.get_product_offer(
-                    self.free_item[item], promotion_dict
-                )
+                updated_unit = values["count"] - self.free_item[item]
+                promoted_price = self.get_product_offer(updated_unit, promotion_dict)
 
-                values = promoted_price
+                current_values = promoted_price
 
-            total += values
+            total += current_values
 
         return total
+
 
