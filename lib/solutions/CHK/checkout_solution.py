@@ -31,7 +31,11 @@ def checkout(skus: str):
 
                 total_item = item_list.count(x)
 
-                prod_item_dict[x] = calculator.calculate_total_bill(x, total_item)
+                prod_item_dict[x] = {}
+                prod_item_dict[x]["count"] = total_item
+                prod_item_dict[x]["cost"] = calculator.calculate_total_bill(
+                    x, total_item
+                )
 
             final_price_item = calculator.calculate_total_with_offer(prod_item_dict)
 
@@ -39,3 +43,4 @@ def checkout(skus: str):
             final_price_item = -1
 
     return final_price_item
+
