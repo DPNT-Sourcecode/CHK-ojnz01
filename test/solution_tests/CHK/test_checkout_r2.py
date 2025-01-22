@@ -26,12 +26,14 @@ from solutions.CHK.checkout_solution import checkout
         ("FF", 10),
         ("AABF", 140),
         ("AABFFF", 150),
+        ("FFFF", 30),
         ("FFFFFF", 40),
     ],
 )
 def test_checkout_r2(skus, result):
     checkout_test = checkout(skus)
     assert checkout_test == result
+
 
 
 

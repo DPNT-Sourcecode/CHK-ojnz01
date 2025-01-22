@@ -37,7 +37,7 @@ class Promotion:
                         offer_item["min_items"] if "min_items" in offer_item else None
                     )
                     print(f"---> {minimum_items}, {quantity}")
-                    if minimum_items and minimum_items < quantity:
+                    if minimum_items and minimum_items > quantity:
                         self.free_item = {}
                     else:
                         self.free_item[offer_item["free_item"]] = (
@@ -91,4 +91,5 @@ class Calculator:
             total += current_values
 
         return total
+
 
