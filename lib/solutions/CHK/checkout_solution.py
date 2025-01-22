@@ -13,6 +13,65 @@ offer_dict_r2 = {
     "G": {
         "price": 20,
     },
+    "H": {
+        "price": 10,
+        "offer": [{"unit": 5, "final_price": 45}, {"unit": 10, "final_price": 80}],
+    },
+    "I": {
+        "price": 35,
+    },
+    "J": {
+        "price": 60,
+    },
+    "K": {"price": 80, "offer": [{"unit": 2, "final_price": 150}]},
+    "L": {
+        "price": 90,
+    },
+    "M": {
+        "price": 15,
+    },
+    "N": {"price": 40, "offer": [{"unit": 3, "free_item": "M"}]},
+    "O": {
+        "price": 10,
+    },
+    "P": {
+        "price": 50,
+        "offer": [{"unit": 5, "final_price": 200}],
+    },
+    "Q": {
+        "price": 30,
+        "offer": [{"unit": 3, "final_price": 80}],
+    },
+    "R": {
+        "price": 50,
+        "offer": [{"unit": 3, "free_item": "Q"}],
+    },
+    "S": {
+        "price": 30,
+    },
+    "T": {
+        "price": 20,
+    },
+    "U": {
+        "price": 40,
+        "offer": [{"unit": 3, "free_item": "U", "min_items": 4}],
+    },
+    "V": {
+        "price": 50,
+        "offer": [{"unit": 2, "final_price": 90}, {"unit": 3, "final_price": 130}],
+    },
+    "W": {
+        "price": 20,
+    },
+    "X": {
+        "price": 90,
+    },
+    "Y": {
+        "price": 10,
+    },
+    "Z": {
+        "price": 50,
+    },
 }
 
 
@@ -47,4 +106,5 @@ def checkout(skus: str):
             final_price_item = -1
 
     return final_price_item
+
 
