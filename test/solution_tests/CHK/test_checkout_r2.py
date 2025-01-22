@@ -33,8 +33,11 @@ OFFER_DISCOUNT_CHK_R1 = {
         ("EEEEBB", 160),
         ("EEEEBBB", 190),
         ("AAAAAAAA", 330),
+        ("ABCDEABCDE", 280),
+        ("CCADDEEBBA", 280),
     ],
 )
 def test_checkout_r2(skus, result):
     checkout_test = checkout(skus)
     assert checkout_test == result
+
