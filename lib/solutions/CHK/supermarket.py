@@ -77,32 +77,35 @@ class Promotion:
                         offer_item["min_items"] if "min_items" in offer_item else None
                     )
 
-                    if minimum_items and minimum_items > quantity:
-                        self.free_item = {}
-                    else:
-                        item = offer_item["free_item"]
-                        free_unit = offer_item["unit"]
-                        group_size = free_unit + len(item)
-
-                        if item != self.product_name:
-                            paid_items = quantity // offer_item["unit"]
-                            self.free_item[item] = paid_items
-                        else:
-                            full_group = quantity // group_size
-                            remaining = min(quantity % group_size, free_unit)
-                            paid_items = full_group * free_unit + remaining
-
-                            self.free_item[item] = quantity - paid_items
+                    self._setup_free_item_promo(minimum_items, quantity, offer_item)
 
                 elif "multi_item" in offer_item:
                     self._setup_multi_promo_obj(
                         quantity,
                         offer_item.get("multi_item", None),
-                        offer_item.get("multi_item", None),
-                        offer_item.get("multi_item", None),
+                        offer_item.get("total_price", None),
+                        offer_item.get("unit", None),
                     )
 
         return total_cost, remain_quantity
+
+    def _setup_free_item_promo(self, minimum_items, quantity, offer_item):
+        if minimum_items and minimum_items > quantity:
+            self.free_item = {}
+        else:
+            item = offer_item["free_item"]
+            free_unit = offer_item["unit"]
+            group_size = free_unit + len(item)
+
+            if item != self.product_name:
+                paid_items = quantity // free_unit
+                self.free_item[item] = paid_items
+            else:
+                full_group = quantity // group_size
+                remaining = min(quantity % group_size, free_unit)
+                paid_items = full_group * free_unit + remaining
+
+                self.free_item[item] = quantity - paid_items
 
     def _setup_multi_promo_obj(
         self, quantity, promo_item_list, final_price, total_unit
@@ -110,8 +113,8 @@ class Promotion:
         if promo_item_list and self.product_name in promo_item_list:
             self.bundle_promo_info = {
                 "bundle_header": promo_item_list,
-                "total_price": offer_item.get("total_price", 0),
-                "total_unit": offer_item.get("unit", 0),
+                "total_price": final_price,
+                "total_unit": total_unit,
                 "item_list": {
                     "price": self.price,
                     "items": list(self.product_name * quantity),
@@ -186,6 +189,7 @@ class Calculator:
             total += current_values
 
         return total
+
 
 
 
