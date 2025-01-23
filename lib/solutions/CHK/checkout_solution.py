@@ -23,7 +23,7 @@ offer_dict_r2 = {
     "J": {
         "price": 60,
     },
-    "K": {"price": 80, "offer": [{"unit": 2, "final_price": 150}]},
+    "K": {"price": 70, "offer": [{"unit": 2, "final_price": 120}]},
     "L": {
         "price": 90,
     },
@@ -121,3 +121,4 @@ def checkout(skus: str):
             final_price_item = -1
 
     return final_price_item
+
