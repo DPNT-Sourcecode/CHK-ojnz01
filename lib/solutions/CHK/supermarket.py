@@ -86,6 +86,8 @@ class Promotion:
                         offer_item.get("total_price", None),
                         offer_item.get("unit", None),
                     )
+        else:
+            print("Error: Offer details not existed.")
 
         return total_cost, remain_quantity
 
@@ -189,6 +191,7 @@ class Calculator:
             total += current_values
 
         return total
+
 
 
 
