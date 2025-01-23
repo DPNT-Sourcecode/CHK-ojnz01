@@ -12,8 +12,31 @@ class BundlePromotion:
         self.list_items.append(product_list)
 
     def calculate_bundle_cost(self):
-        p
+        cost_count = 0
+        count_item = 0
+        max_cost = 0
+        
+        self.list_items = sorted(self.list_items, key=lambda x:x['price'])
+        total_item_list = [
+            item for sublist in self.list_items for item in sublist.get("items", [])
+        ]
+        price_mapping_dict = {
+            sublist["items"][0]: sublist.get("price", 0)
+            for sublist in self.list_items
+            if sublist.get("items")
+        }
 
+        for item in total_item_list:
+            cost_count += price_mapping_dict[item]
+            count_item += 1 
+            if count_item >= self.max_items:
+                if cost_count > self.total_cost:
+                    max_cost += self.total_cost
+                    cost_count = 0
+                count_item = 0
+                
+        cost_count += max_cost
+        return cost_count
 
 class Promotion:
 
@@ -21,6 +44,7 @@ class Promotion:
         self.price = None
         self.offer_details_dict = None
         self.free_item = {}
+        self.bundle_promo_info = {}
         self.product_name = product_name
 
         promo_dict = offer_dict.get(self.product_name, None)
@@ -69,8 +93,24 @@ class Promotion:
 
                             self.free_item[item] = quantity - paid_items
 
+                elif "multi_item" in offer_item:
+                    self._setup_multi_promo_obj(quantity, offer_item)
+                    
         return total_cost, remain_quantity
 
+    def _setup_multi_promo_obj(self, quantity, offer_item):
+        promo_item_list = offer_item["multi_item"]
+        if self.product_name in promo_item_list:
+            self.bundle_promo_info = {
+                "bundle_header": promo_item_list, 
+                "total_price": offer_item.get("total_price", 0)
+                "total_unit" : offer_item.get("unit", 0)
+                "item_list": {
+                    "price": self.price, 
+                    "items": list(self.product_name * quantity)
+                }
+            }
+        
 
 class Calculator:
 
@@ -116,6 +156,7 @@ class Calculator:
             total += current_values
 
         return total
+
 
 
 
