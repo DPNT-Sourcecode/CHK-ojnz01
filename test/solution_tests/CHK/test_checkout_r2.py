@@ -55,12 +55,26 @@ def test_checkout_r2(skus, result):
             ],
             50,
         ),
+        (
+            ["S", "T", "X", "Y", "Z"],
+            45,
+            3,
+            [
+                {"price": 20, "items": ["S"]},
+                {"price": 17, "items": ["X"]},
+                {"price": 20, "items": ["T"]},
+            ],
+            45,
+        ),
     ],
 )
 def test_bundle_promo_final_price(
     bundle_list, total_cost, max_items, input_dict, result
 ):
     test_bundle_promo = BundlePromotion(bundle_list, total_cost, max_items)
-    test_bundle_promo.insert_purchased_items(input_dict)
+    for i in input_dict:
+        test_bundle_promo.insert_purchased_items(i)
+
     result_all_bundle_price = test_bundle_promo.calculate_bundle_cost()
     assert result == result_all_bundle_price
+
