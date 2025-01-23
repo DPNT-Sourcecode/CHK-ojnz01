@@ -191,8 +191,3 @@ class Calculator:
             total += current_values
 
         return total
-
-
-
-
-
