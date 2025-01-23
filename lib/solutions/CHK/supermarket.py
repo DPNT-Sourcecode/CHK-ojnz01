@@ -1,6 +1,11 @@
 from typing import Dict
 
 
+class BundlePromotion:
+    def __init__(self) -> None:
+        pass
+
+
 class Promotion:
 
     def __init__(self, offer_dict, product_name) -> None:
@@ -102,3 +107,4 @@ class Calculator:
             total += current_values
 
         return total
+
