@@ -158,7 +158,16 @@ class Calculator:
         return final_offer
 
     def calculate_total_with_offer(self, prod_total_dict):
-        total = 0
+
+        none_bundle_promo_items = {
+            item: value
+            for item, value in prod_total_dict.items()
+            if self.bundle_promo
+            and item not in self.bundle_promo.items_bundle
+            or not self.bundle_promo
+        }
+        total = self.bundle_promo.calculate_bundle_cost() if self.bundle_promo else 0
+
         for item, values in prod_total_dict.items():
             promotion_dict = Promotion(self.offer_dict, item)
             current_values = values["cost"]
@@ -171,3 +180,4 @@ class Calculator:
             total += current_values
 
         return total
+
