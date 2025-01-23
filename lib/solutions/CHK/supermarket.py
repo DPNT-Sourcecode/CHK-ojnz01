@@ -2,14 +2,17 @@ from typing import Dict
 
 
 class BundlePromotion:
-    def __init__(self) -> None:
-        pass
+    def __init__(self, bundle_list, bundle_total_cost, max_items) -> None:
+        self.items_bundle = bundle_list
+        self.total_cost = bundle_total_cost
+        self.max_items = max_items
+        self.list_items = []
 
     def insert_purchased_items(self, product_list):
-        pass
+        self.list_items.append(product_list)
 
     def calculate_bundle_cost(self):
-        pass
+        p
 
 
 class Promotion:
@@ -113,5 +116,6 @@ class Calculator:
             total += current_values
 
         return total
+
 
 

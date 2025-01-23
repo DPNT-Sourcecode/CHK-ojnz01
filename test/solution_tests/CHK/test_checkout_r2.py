@@ -61,7 +61,9 @@ def test_bundle_promo_final_price(
     bundle_list, total_cost, max_items, input_dict, result
 ):
     test_bundle_promo = BundlePromotion(bundle_list, total_cost, max_items)
-    result_all_bundle_price = test_bundle_promo
+    test_bundle_promo.insert_purchased_items(input_dict)
+    result_all_bundle_price = test_bundle_promo.calculate_bundle_cost()
     assert result == result_all_bundle_price
+
 
 
