@@ -5,6 +5,12 @@ class BundlePromotion:
     def __init__(self) -> None:
         pass
 
+    def insert_purchased_items(self, product_list):
+        pass
+
+    def calculate_bundle_cost(self):
+        pass
+
 
 class Promotion:
 
@@ -107,4 +113,5 @@ class Calculator:
             total += current_values
 
         return total
+
 
