@@ -48,6 +48,9 @@ offer_dict_r2 = {
     },
     "S": {
         "price": 30,
+        "offer": [
+            {"unit": 3, "multi_item": ["S", "T", "X", "Y", "Z"], "total_price": 45}
+        ],
     },
     "T": {
         "price": 20,
@@ -68,12 +71,21 @@ offer_dict_r2 = {
     },
     "X": {
         "price": 90,
+        "offer": [
+            {"unit": 3, "multi_item": ["S", "T", "X", "Y", "Z"], "total_price": 45}
+        ],
     },
     "Y": {
         "price": 10,
+        "offer": [
+            {"unit": 3, "multi_item": ["S", "T", "X", "Y", "Z"], "total_price": 45}
+        ],
     },
     "Z": {
         "price": 50,
+        "offer": [
+            {"unit": 3, "multi_item": ["S", "T", "X", "Y", "Z"], "total_price": 45}
+        ],
     },
 }
 
@@ -109,3 +121,4 @@ def checkout(skus: str):
             final_price_item = -1
 
     return final_price_item
+

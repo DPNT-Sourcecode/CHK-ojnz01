@@ -1,5 +1,6 @@
 import pytest
 from solutions.CHK.checkout_solution import checkout
+from solutions.CHK.supermarket import BundlePromotion
 
 
 @pytest.mark.parametrize(
@@ -43,7 +44,21 @@ def test_checkout_r2(skus, result):
 
 
 @pytest.mark.parametrize(
-    "bundle_list, total_cost, max_items, input_dict, result", [
-        ([])
-    ]
+    "bundle_list, total_cost, max_items, input_dict, result",
+    [
+        (
+            ["S", "T", "X", "Y", "Z"],
+            45,
+            3,
+            [
+                {"price": 50, "items": ["Z"]},
+            ],
+            50,
+        ),
+    ],
 )
+def test_bundle_promo_final_price(
+    bundle_list, total_cost, max_items, input_dict, result
+):
+    test_bundle_promo = BundlePromotion()
+
