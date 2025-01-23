@@ -95,13 +95,19 @@ class Promotion:
                             self.free_item[item] = quantity - paid_items
 
                 elif "multi_item" in offer_item:
-                    self._setup_multi_promo_obj(quantity, offer_item)
+                    self._setup_multi_promo_obj(
+                        quantity,
+                        offer_item.get("multi_item", None),
+                        offer_item.get("multi_item", None),
+                        offer_item.get("multi_item", None),
+                    )
 
         return total_cost, remain_quantity
 
-    def _setup_multi_promo_obj(self, quantity, offer_item):
-        promo_item_list = offer_item["multi_item"]
-        if self.product_name in promo_item_list:
+    def _setup_multi_promo_obj(
+        self, quantity, promo_item_list, final_price, total_unit
+    ):
+        if promo_item_list and self.product_name in promo_item_list:
             self.bundle_promo_info = {
                 "bundle_header": promo_item_list,
                 "total_price": offer_item.get("total_price", 0),
@@ -180,5 +186,6 @@ class Calculator:
             total += current_values
 
         return total
+
 
 
