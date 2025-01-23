@@ -53,7 +53,7 @@ class Promotion:
             self.price = promo_dict.get("price", None)
             temp_offer_dict_obj = promo_dict.get("offer", None)
             self.offer_details_dict = (
-                sorted(temp_offer_dict_obj, key=lambda x: x["unit"], reverse=True)
+                sorted(temp_offer_dict_obj, key=lambda x: x["unit"])
                 if temp_offer_dict_obj
                 else None
             )
@@ -191,3 +191,4 @@ class Calculator:
             total += current_values
 
         return total
+
