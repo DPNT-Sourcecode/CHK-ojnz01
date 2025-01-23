@@ -16,7 +16,9 @@ class BundlePromotion:
         count_item = 0
         max_cost = 0
 
-        self.list_items = sorted(self.list_items, key=lambda x: x["price"])
+        self.list_items = sorted(
+            self.list_items, key=lambda x: x["price"], reverse=True
+        )
         total_item_list = [
             item for sublist in self.list_items for item in sublist.get("items", [])
         ]
@@ -53,7 +55,7 @@ class Promotion:
             self.price = promo_dict.get("price", None)
             temp_offer_dict_obj = promo_dict.get("offer", None)
             self.offer_details_dict = (
-                sorted(temp_offer_dict_obj, key=lambda x: x["unit"])
+                sorted(temp_offer_dict_obj, key=lambda x: x["unit"], reverse=True)
                 if temp_offer_dict_obj
                 else None
             )
@@ -191,4 +193,5 @@ class Calculator:
             total += current_values
 
         return total
+
 

@@ -37,7 +37,7 @@ from solutions.CHK.supermarket import BundlePromotion
         ("UUUUUUUUU", 280),
         ("WWZHHHHHH", 116),
         ("STX", 45),
-        ("STXX", 65),
+        ("STXX", 62),
         ("STXXZY", 90),
         ("AAAAAABBEEESSTYZZ", 490),
         ("K", 70),
@@ -46,6 +46,7 @@ from solutions.CHK.supermarket import BundlePromotion
         ("QQQ", 80),
         ("STXS", 62),
         ("SSSZ", 65),
+        ("ZZZS", 65),
     ],
 )
 def test_checkout_r2(skus, result):
@@ -87,6 +88,7 @@ def test_bundle_promo_final_price(
 
     result_all_bundle_price = test_bundle_promo.calculate_bundle_cost()
     assert result == result_all_bundle_price
+
 
 
 
