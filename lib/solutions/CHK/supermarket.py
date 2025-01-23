@@ -168,7 +168,7 @@ class Calculator:
         }
         total = self.bundle_promo.calculate_bundle_cost() if self.bundle_promo else 0
 
-        for item, values in prod_total_dict.items():
+        for item, values in none_bundle_promo_items.items():
             promotion_dict = Promotion(self.offer_dict, item)
             current_values = values["cost"]
             if item in self.free_item:
@@ -180,4 +180,5 @@ class Calculator:
             total += current_values
 
         return total
+
 
