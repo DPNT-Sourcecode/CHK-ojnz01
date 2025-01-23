@@ -15,8 +15,8 @@ class BundlePromotion:
         cost_count = 0
         count_item = 0
         max_cost = 0
-        
-        self.list_items = sorted(self.list_items, key=lambda x:x['price'])
+
+        self.list_items = sorted(self.list_items, key=lambda x: x["price"])
         total_item_list = [
             item for sublist in self.list_items for item in sublist.get("items", [])
         ]
@@ -28,15 +28,16 @@ class BundlePromotion:
 
         for item in total_item_list:
             cost_count += price_mapping_dict[item]
-            count_item += 1 
+            count_item += 1
             if count_item >= self.max_items:
                 if cost_count > self.total_cost:
                     max_cost += self.total_cost
                     cost_count = 0
                 count_item = 0
-                
+
         cost_count += max_cost
         return cost_count
+
 
 class Promotion:
 
@@ -95,34 +96,48 @@ class Promotion:
 
                 elif "multi_item" in offer_item:
                     self._setup_multi_promo_obj(quantity, offer_item)
-                    
+
         return total_cost, remain_quantity
 
     def _setup_multi_promo_obj(self, quantity, offer_item):
         promo_item_list = offer_item["multi_item"]
         if self.product_name in promo_item_list:
             self.bundle_promo_info = {
-                "bundle_header": promo_item_list, 
-                "total_price": offer_item.get("total_price", 0)
-                "total_unit" : offer_item.get("unit", 0)
+                "bundle_header": promo_item_list,
+                "total_price": offer_item.get("total_price", 0),
+                "total_unit": offer_item.get("unit", 0),
                 "item_list": {
-                    "price": self.price, 
-                    "items": list(self.product_name * quantity)
-                }
+                    "price": self.price,
+                    "items": list(self.product_name * quantity),
+                },
             }
-        
+
+    def get_bundle_promo_info(self):
+        return self.bundle_promo_info
+
 
 class Calculator:
 
     def __init__(self, offer_dict: Dict) -> None:
         self.offer_dict = offer_dict
         self.free_item = {}
+        self.bundle_promo = None
 
     def calculate_total_bill(self, product: str, unit: int) -> int:
         total_sum = 0
         product_promotion = Promotion(self.offer_dict, product)
         if product_promotion.offer_details_dict:
             total_sum = self.get_product_offer(unit, product_promotion)
+            bundle_promo_info = product_promotion.get_bundle_promo_info()
+            if not self.bundle_promo and bundle_promo_info:
+                self.bundle_promo = BundlePromotion(
+                    bundle_promo_info["bundle_header"],
+                    bundle_promo_info["total_price"],
+                    bundle_promo_info["total_unit"],
+                )
+                self.bundle_promo.insert_purchased_items(bundle_promo_info["item_list"])
+            elif self.bundle_promo and bundle_promo_info:
+                self.bundle_promo.insert_purchased_items(bundle_promo_info["item_list"])
 
         elif not product_promotion.offer_details_dict and product_promotion.price:
             total_sum = product_promotion.price * unit
@@ -156,7 +171,3 @@ class Calculator:
             total += current_values
 
         return total
-
-
-
-
