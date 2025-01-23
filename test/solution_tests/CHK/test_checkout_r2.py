@@ -40,3 +40,10 @@ from solutions.CHK.checkout_solution import checkout
 def test_checkout_r2(skus, result):
     checkout_test = checkout(skus)
     assert checkout_test == result
+
+
+@pytest.mark.parametrize(
+    "bundle_list, total_cost, max_items, input_dict, result", [
+        ([])
+    ]
+)

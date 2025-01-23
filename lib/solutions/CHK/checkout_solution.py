@@ -51,6 +51,9 @@ offer_dict_r2 = {
     },
     "T": {
         "price": 20,
+        "offer": [
+            {"unit": 3, "multi_item": ["S", "T", "X", "Y", "Z"], "total_price": 45}
+        ],
     },
     "U": {
         "price": 40,
